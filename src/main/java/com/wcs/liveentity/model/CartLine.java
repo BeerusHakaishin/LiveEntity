@@ -1,9 +1,12 @@
 package com.wcs.liveentity.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
@@ -23,6 +26,14 @@ public class CartLine {
 	@DecimalMin(value = "0.0", inclusive = false)
 	@Digits(integer = 6, fraction = 2)
 	private Float total;
+	
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "cart_id")
+	private Cart cart;
+	
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "product_id")
+	private Product product;
 
 	public Long getId() {
 		return id;
@@ -46,5 +57,21 @@ public class CartLine {
 
 	public void setTotal(Float total) {
 		this.total = total;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 }

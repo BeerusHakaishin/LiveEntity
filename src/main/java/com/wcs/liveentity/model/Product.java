@@ -7,6 +7,9 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -30,6 +33,11 @@ public class Product {
 	
 	@Min(value = 0)
 	private Integer stock;
+	
+	@ManyToMany
+	@JoinTable(name = "product_category",joinColumns = @JoinColumn(name = "product_id"),
+				inverseJoinColumns = @JoinColumn(name = "category_id"))
+	private List<Category> categories;
 
 	public Long getId() {
 		return id;
@@ -69,5 +77,13 @@ public class Product {
 
 	public void setStock(Integer stock) {
 		this.stock = stock;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 }

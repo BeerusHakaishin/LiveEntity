@@ -1,11 +1,13 @@
 package com.wcs.liveentity.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -41,6 +43,9 @@ public class Customer {
 	@NotBlank
 	@Size(min=10, max = 100)
 	private String phone;
+	
+	@OneToMany(mappedBy = "customer")
+	private List<Cart> carts;
 
 	public Long getId() {
 		return id;
@@ -104,6 +109,14 @@ public class Customer {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public List<Cart> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
 	}
 	
 }

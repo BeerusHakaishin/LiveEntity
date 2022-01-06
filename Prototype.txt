@@ -1,0 +1,41 @@
+Product 
+	- id
+	- name
+	- description
+	- price
+	- stock
+Category
+	- id
+	- name
+	- displayOrder
+Cart
+	- id
+	- creation_date
+	- price
+CartLine
+	- id
+	- quantity
+	- total
+Customer
+	- id
+	- firstname
+	- lastname
+	- email
+	- password
+	- address
+	- birth_date
+	- phone
+	
+Liens : 
+
+Product peut avoir plusieurs Category
+Category peut avoir plusieurs Product
+
+Un Cart peut avoir un seul Customer.
+Un Customer peut avoir plusieurs Cart
+
+Un Cart peut avoir plusieurs CartLine
+Une CartLine peut avoir un seul Cart.
+
+Une CartLine peut avoir un seul Product
+Un Product peut avoir plusieurs CartLine

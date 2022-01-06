@@ -1,10 +1,13 @@
 package com.wcs.liveentity.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -26,6 +29,9 @@ public class Category {
 	@Min(0)
 	@Column(name= "display_order")
 	private Integer displayOrder;
+	
+	@ManyToMany(mappedBy = "categories")
+	private List<Product> products;
 
 	public Long getId() {
 		return id;
@@ -49,5 +55,13 @@ public class Category {
 
 	public void setDisplayOrder(Integer displayOrder) {
 		this.displayOrder = displayOrder;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 }
