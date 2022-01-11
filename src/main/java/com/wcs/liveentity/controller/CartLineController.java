@@ -13,17 +13,22 @@ public class CartLineController {
 
 	// Create a new cartLine
 	////
-
+	@PostMapping
+	
 	// Get one cartLine
 	////
+	@GetMapping
 
 	// Get all cartLine
 	////
+	@GetMapping
 
 	// Update one cartLine
 	////
+	@PutMapping
 
 	// Delete one cartLine
 	////
+	@DeleteMapping
 
 }
