@@ -1,5 +1,5 @@
 package com.wcs.liveentity.repository;
 
-public class CategoryRepository {
+public interface CategoryRepository {
 
 }
