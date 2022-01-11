@@ -12,6 +12,35 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class CustomerDto {
 
+	@NotBlank
+	@Size(min = 2, max = 100)
+	private String firstname;
+
+	@NotBlank
+	@Size(min = 2, max = 100)
+	private String lastname;
+
+	@NotBlank
+	@Size(min = 6, max = 150)
+	private String email;
+
+	@NotBlank
+	@Size(min = 2, max = 100)
+	private String password;
+
+	@NotBlank
+	@Size(min = 10, max = 150)
+	private String address;
+
+	@Past
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
+	private Date birthdate;
+
+	@NotBlank
+	@Size(min = 10, max = 100)
+	private String phone;
+
 	public String getFirstname() {
 		return firstname;
 	}
@@ -73,33 +102,4 @@ public class CustomerDto {
 		return "CustomerDto [firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + ", password="
 				+ password + ", address=" + address + ", birthdate=" + birthdate + ", phone=" + phone + "]";
 	}
-
-	@NotBlank
-	@Size(min = 2, max = 100)
-	private String firstname;
-
-	@NotBlank
-	@Size(min = 2, max = 100)
-	private String lastname;
-
-	@NotBlank
-	@Size(min = 6, max = 150)
-	private String email;
-
-	@NotBlank
-	@Size(min = 2, max = 100)
-	private String password;
-
-	@NotBlank
-	@Size(min = 10, max = 150)
-	private String address;
-
-	@Past
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Temporal(TemporalType.DATE)
-	private Date birthdate;
-
-	@NotBlank
-	@Size(min = 10, max = 100)
-	private String phone;
 }
