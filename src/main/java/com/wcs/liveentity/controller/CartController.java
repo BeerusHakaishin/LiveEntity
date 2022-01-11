@@ -13,16 +13,21 @@ public class CartController {
 
 	// Create a new cart
 	////
+	@PostMapping
 
 	// Get one cart
 	////
-
+	@GetMapping
+	
 	// Get all cart
 	////
-
+	@GetMapping
+	
 	// Update one cart
 	////
-
+	@PutMapping
+	
 	// Delete one cart
 	////
+	@DeleteMapping
 }
