@@ -25,7 +25,7 @@ import com.wcs.liveentity.repository.CategoryRepository;
 import com.wcs.liveentity.repository.ProductRepository;
 
 @RestController
-@RequestMapping("products")
+@RequestMapping("/products")
 public class ProductController {
 
 	@Autowired
@@ -38,15 +38,9 @@ public class ProductController {
 	//// http://localhost:8080/products
 	@PostMapping
 	public Product create(@Valid @RequestBody ProductDto productDto) {
-		Product product = new Product();
-
-		product.setName(productDto.getName());
-		product.setDescription(productDto.getDescription());
-		product.setPrice(productDto.getPrice());
-		product.setStock(productDto.getStock());
 		// On crée la liste de catégories qu'on va vouloir associer à notre nouveau
 		// product
-		List<Category> categories = new ArrayList<Category>();
+		List<Category> categories = new ArrayList<>();
 
 		// Pour chaque id catégorie envoyé dans le product DTO
 		for (Long categoryId : productDto.getCategoryIds()) {
@@ -57,8 +51,18 @@ public class ProductController {
 				// Si elle est existante on la place dans la liste de categorie associée au
 				// product
 				categories.add(optCategory.get());
+			} else {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 			}
 		}
+
+		Product product = new Product();
+
+		product.setName(productDto.getName());
+		product.setDescription(productDto.getDescription());
+		product.setPrice(productDto.getPrice());
+		product.setStock(productDto.getStock());
+
 		product.setCategories(categories);
 		return productRepository.save(product);
 	}

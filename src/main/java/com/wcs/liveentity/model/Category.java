@@ -13,23 +13,26 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	@NotBlank
-	@Size(min=3, max = 100)
+	@Size(min = 3, max = 100)
 	private String name;
-	
+
 	@NotNull
 	@Min(0)
-	@Column(name= "display_order")
+	@Column(name = "display_order")
 	private Integer displayOrder;
-	
+
+	@JsonIgnore
 	@ManyToMany(mappedBy = "categories")
 	private List<Product> products;
 

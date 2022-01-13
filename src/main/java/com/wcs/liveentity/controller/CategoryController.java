@@ -18,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.wcs.liveentity.dto.CategoryDto;
 import com.wcs.liveentity.model.Category;
+import com.wcs.liveentity.model.Product;
 import com.wcs.liveentity.repository.CategoryRepository;
 
 @RestController
@@ -41,16 +42,14 @@ public class CategoryController {
 	}
 
 	// Get one category
-	//// http://localhost:8080/categories/{id}
-	@GetMapping("/{id}")
-	public Category get(@PathVariable(required = true) Long id) {
-		Optional<Category> optCategory = categoryRepository.findById(id);
-		// Si la catégorie existe alors retourne la moi
-		if (optCategory.isPresent()) {
-			return optCategory.get();
-		}
-		// Sinon tu me lance une erreur
-		throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+	//// http://localhost:8080/categories/{id}/products
+	@GetMapping("/{id}/products")
+	public List<Product> getProductsFromCategory(@PathVariable(required = true) Long id) {
+		// On va chercher la categorie , si elle n'existe pas on lance une exception
+		Category category = categoryRepository.findById(id)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+		// On retourne la liste de produits liée à la catégorie
+		return category.getProducts();
 	}
 
 	// Get all categories
