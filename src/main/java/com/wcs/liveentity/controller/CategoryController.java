@@ -41,7 +41,7 @@ public class CategoryController {
 		return categoryRepository.save(category);
 	}
 
-	// Get one category
+	// Get one category and associated products
 	//// http://localhost:8080/categories/{id}/products
 	@GetMapping("/{id}/products")
 	public List<Product> getProductsFromCategory(@PathVariable(required = true) Long id) {
